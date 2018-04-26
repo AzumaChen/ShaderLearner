@@ -151,7 +151,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		else {
 			// Direct3Dの処理
 			g_pD3DDev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 255), 1.0f, 0);
-			g_pD3DDev->BeginScene();
+			g_pD3DDev->BeginScene();	// シーンの描画開始
 
 			// 描画
 			c += 0.0f;    // 足す値
@@ -167,7 +167,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 
 			g_pD3DDev->DrawPrimitive(D3DPT_TRIANGLEFAN, 0, 2);      // ストリームスタート
 
-			g_pD3DDev->EndScene();
+			g_pD3DDev->EndScene();	// シーンの描画終了
 			g_pD3DDev->Present(NULL, NULL, NULL, NULL);
 		}
 	} while (msg.message != WM_QUIT);
