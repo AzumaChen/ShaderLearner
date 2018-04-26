@@ -46,16 +46,18 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		return 0;
 
 	// Direct3Dの初期化
-	LPDIRECT3D9 g_pD3D;
+	LPDIRECT3D9 g_pD3D;				// Idirect3Device9インターフェース
 	LPDIRECT3DDEVICE9 g_pD3DDev;	// デバイスのIdirect3Device9インターフェース
 	if (!(g_pD3D = Direct3DCreate9(D3D_SDK_VERSION))) return 0;	// 取得失敗　return false;
 	D3DPRESENT_PARAMETERS d3dpp = { 0,0,D3DFMT_UNKNOWN,0,D3DMULTISAMPLE_NONE,0,
 		D3DSWAPEFFECT_DISCARD,NULL,TRUE,0,D3DFMT_UNKNOWN,0,0 };
 
+	// IDirect3d9::CreateDeviceメソッド実行
 	if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &g_pD3DDev)))
-	{
-		g_pD3D->Release(); return 0;
-	}
+		if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_REF, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &g_pD3DDev)))
+		{
+			g_pD3D->Release(); return 0;
+		}
 
 	// 頂点の設定（小さな長方形）
 	CUSTOMVTX v[] =
