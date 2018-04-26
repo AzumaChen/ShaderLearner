@@ -46,8 +46,9 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 		return 0;
 
 	// Direct3Dの初期化
-	LPDIRECT3D9 g_pD3D;   LPDIRECT3DDEVICE9 g_pD3DDev;
-	if (!(g_pD3D = Direct3DCreate9(D3D_SDK_VERSION))) return 0;
+	LPDIRECT3D9 g_pD3D;
+	LPDIRECT3DDEVICE9 g_pD3DDev;	// デバイスのIdirect3Device9インターフェース
+	if (!(g_pD3D = Direct3DCreate9(D3D_SDK_VERSION))) return 0;	// 取得失敗　return false;
 	D3DPRESENT_PARAMETERS d3dpp = { 0,0,D3DFMT_UNKNOWN,0,D3DMULTISAMPLE_NONE,0,
 		D3DSWAPEFFECT_DISCARD,NULL,TRUE,0,D3DFMT_UNKNOWN,0,0 };
 
